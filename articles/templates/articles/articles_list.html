@@ -1,0 +1,54 @@
+{% extends 'inc/_3blocks.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block summary %}
+    {% include 'articles/articles_summary.html' %}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            {% for item in page_obj %}
+            <div class="card mb-3">
+                <div class="card-body embed-responsive embed-responsive-16by9">
+                    <h5 class="card-title mt-0">{{ item.title }}</h5>
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" class="mb-3 card-img-top embed-responsive-item">
+                    {% endif %}
+                    <p class="card-text">{{ item.content|truncatechars:500|safe}}</p>
+                    <a href="{{ item.pk }}" class="btn btn-primary">{{ button_name }}</a>
+                </div>
+            </div>
+            {% empty %}
+            <h4>Статей пока нет.</h4>
+            {% endfor %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><span class="page-link">Предыдущая</span></li>
+                    {% endif %}
+                    {% for page in page_obj.paginator.page_range %}
+                    {% if page == page_obj.number %}
+                    <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Следующая</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><span class="page-link">Следующая</span></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

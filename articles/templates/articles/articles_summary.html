@@ -1,0 +1,9 @@
+<div class="card mt-3">
+  <div class="card-body">
+      <h5>Список статей</h5>
+    {% for item in summary_list %}
+      <p><a href="{% url 'article_single' item.pk %}">{{ item.title }}</a></p>
+    {% empty %}
+    {% endfor %}
+  </div>
+</div>

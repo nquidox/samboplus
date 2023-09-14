@@ -1,0 +1,428 @@
+{% extends 'inc/_3blocks.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+<div class="container mt-3 mb-5">
+<h1>Личный кабинет</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <h3 class="mt-3 mb-3">Информация о спортсмене:</h3>
+  <div class="row">
+    <div class="col-md-9">
+
+      <div class="row">
+        <h6>Фамилия</h6>
+        <div class="col-md-11">{{ form.last_name|as_crispy_field }}</div>
+        <div class="col-md-1">
+        {% if user_profile.last_name %}
+        <img src="/media/default/ok.svg" width="32" height="32">
+        {% else %}
+        <img src="/media/default/emark.svg" width="32" height="32">
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <h6>Имя</h6>
+        <div class="col-md-11">{{ form.first_name|as_crispy_field }}</div>
+        <div class="col-md-1">
+        {% if user_profile.first_name %}
+        <img src="/media/default/ok.svg" width="32" height="32">
+        {% else %}
+        <img src="/media/default/emark.svg" width="32" height="32">
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <h6>Отчество</h6>
+        <div class="col-md-11">{{ form.patronymic|as_crispy_field }}</div>
+        <div class="col-md-1">
+        {% if user_profile.patronymic %}
+        <img src="/media/default/ok.svg" width="32" height="32">
+        {% else %}
+        <img src="/media/default/emark.svg" width="32" height="32">
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row">
+          <h6>Дата рождения</h6>
+          <div class="col-md-9">{{ form.birth_date|as_crispy_field }}</div>
+          <div class="col-md-3">
+          {% if user_profile.birth_date %}
+          <img src="/media/default/ok.svg" width="32" height="32">
+          {% else %}
+          <img src="/media/default/emark.svg" width="32" height="32">
+          {% endif %}
+          </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <div class="row">
+          <h6>Пол</h6>
+          <div class="col-md-9">{{ form.gender|as_crispy_field }}</div>
+          <div class="col-md-3">
+          {% if user_profile.gender %}
+          <img src="/media/default/ok.svg" width="32" height="32">
+          {% else %}
+          <img src="/media/default/emark.svg" width="32" height="32">
+          {% endif %}
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <h6><em>Пример даты: 1.1.2000</em></h6>
+      </div>
+
+      <div class="row">
+        <h6>Место рождения</h6>
+        <div class="col-md-11">{{ form.place_of_birth|as_crispy_field }}</div>
+        <div class="col-md-1">
+        {% if user_profile.place_of_birth %}
+        <img src="/media/default/ok.svg" width="32" height="32">
+        {% else %}
+        <img src="/media/default/qmark.svg" width="32" height="32">
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <h6>Домашний адрес</h6>
+        <div class="col-md-11">{{ form.home_address|as_crispy_field }}</div>
+        <div class="col-md-1">
+        {% if user_profile.home_address %}
+        <img src="/media/default/ok.svg" width="32" height="32">
+        {% else %}
+        <img src="/media/default/emark.svg" width="32" height="32">
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row">
+            <h6>Текущий вес, кг</h6>
+            <div class="col-md-9">{{ form.current_weight|as_crispy_field }}</div>
+            <div class="col-md-1">
+            {% if user_profile.current_weight and user_profile.current_weight > 0 %}
+            <img src="/media/default/ok.svg" width="32" height="32">
+            {% else %}
+            <img src="/media/default/emark.svg" width="32" height="32">
+            {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <div class="row">
+            <h6>Текущий рост, см</h6>
+            <div class="col-md-9">{{ form.current_height|as_crispy_field }}</div>
+            <div class="col-md-1">
+            {% if user_profile.current_height and user_profile.current_height > 0 %}
+            <img src="/media/default/ok.svg" width="32" height="32">
+            {% else %}
+            <img src="/media/default/qmark.svg" width="32" height="32">
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <h6>Обхват груди, см</h6>
+            <div class="col">{{ form.chest|as_crispy_field }}</div>
+            <div class="col">
+            {% if user_profile.chest %}
+            <img src="/media/default/ok.svg" width="32" height="32">
+            {% else %}
+            <img src="/media/default/qmark.svg" width="32" height="32">
+            {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="row">
+            <h6>Размер талии, см</h6>
+            <div class="col">{{ form.waist|as_crispy_field }}</div>
+            <div class="col">
+            {% if user_profile.waist %}
+            <img src="/media/default/ok.svg" width="32" height="32">
+            {% else %}
+            <img src="/media/default/qmark.svg" width="32" height="32">
+            {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <h6>Размер бедер, см</h6>
+            <div class="col">{{ form.hips|as_crispy_field }}</div>
+            <div class="col">
+            {% if user_profile.hips %}
+            <img src="/media/default/ok.svg" width="32" height="32">
+            {% else %}
+            <img src="/media/default/qmark.svg" width="32" height="32">
+            {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="row">
+            <h6>Размер стопы, см</h6>
+            <div class="col">{{ form.foot|as_crispy_field }}</div>
+            <div class="col">
+            {% if user_profile.foot %}
+            <img src="/media/default/ok.svg" width="32" height="32">
+            {% else %}
+            <img src="/media/default/qmark.svg" width="32" height="32">
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-3">
+      <div class="row">
+        {% if user_profile.photo %}
+        <img width="300" height="531" src="{{ user_profile.photo.url }}" class="img-fluid img-thumbnail">
+        {% else %}
+        <img width="300" height="531" src="/media/default/profile.svg" class="img-fluid img-thumbnail">
+        {% endif %}
+        {{ form.photo|as_crispy_field }}
+      </div>
+      <div>
+        <h6>e-mail</h6>
+        {{ form.email|as_crispy_field }}
+      </div>
+      <div>
+        <div><a href="{% url 'change_password' %}">Сменить пароль</a></div>
+      </div>
+
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Сохранить</button>
+
+  <h3 class="mt-4">Информация о родителях (опекунах):</h3>
+    <div class="row">
+      <div class="col-md-9 mb-0">
+        <div class="row">
+        <h6>Ф.И.О</h6>
+        <div class="col-md-10">{{ form.fullname1|as_crispy_field }}</div>
+        <div class="col-md-2">
+        {% if user_profile.fullname1 %}
+        <img src="/media/default/ok.svg" width="32" height="32">
+        {% else %}
+        <img src="/media/default/emark.svg" width="32" height="32">
+        {% endif %}
+        </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-0">
+        <div class="row">
+        <h6>Номер телефона</h6>
+        <div class="col-md-10">{{ form.phone_number1|as_crispy_field }}</div>
+        <div class="col-md-2">
+        {% if user_profile.phone_number1 %}
+        <img src="/media/default/ok.svg" width="32" height="32">
+        {% else %}
+        <img src="/media/default/emark.svg" width="32" height="32">
+        {% endif %}
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-9 mb-0">
+        <div class="row">
+        <h6>Ф.И.О</h6>
+        <div class="col-md-10">{{ form.fullname2|as_crispy_field }}</div>
+        <div class="col-md-2">
+        {% if user_profile.fullname2 %}
+        <img src="/media/default/ok.svg" width="32" height="32">
+        {% else %}
+        <img src="/media/default/qmark.svg" width="32" height="32">
+        {% endif %}
+        </div>
+      </div>
+
+      </div>
+      <div class="col-md-3 mb-0">
+        <div class="row">
+        <h6>Номер телефона</h6>
+        <div class="col-md-10">{{ form.phone_number2|as_crispy_field }}</div>
+        <div class="col-md-2">
+        {% if user_profile.phone_number2 %}
+        <img src="/media/default/ok.svg" width="32" height="32">
+        {% else %}
+        <img src="/media/default/qmark.svg" width="32" height="32">
+        {% endif %}
+        </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="row mb-3">
+    <h6><em>Пример номера телефона: +71234567890</em></h6>
+  </div>
+
+  <h3 class="mt-4">Документы:</h3>
+  <em>Внимание: даты действия документов выставляются администратором с задержкой в 1-3 дня.</em>
+    <div class="form-group mb-0 table-responsive">
+      <table class="table table-sm table-striped align-middle">
+        <thead>
+        <tr>
+          <th class="w-25">Документ</th>
+          <th class="w-50">Загрузить</th>
+          <th>Скачать</th>
+          <th>Истекает</th>
+          <th>Действительно</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Заявление</td>
+          <td>{{ form.application_blank|as_crispy_field }}</td>
+          {% if user_profile.application_blank %}
+          <td><a href="{{user_profile.application_blank.url}}" download>
+            <img src="/media/default/doc_green.svg" width="32" height="32" title="Скачать"></a></td>
+          {% else %}
+          <td><img src="/media/default/doc_red.svg" width="32" height="32" title="Файл отсутствует"></td>
+          {% endif %}
+          <td>Бессрочно</td>
+          <td></td>
+          {% if user_profile.application_blank %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/emark.svg" width="32" height="32"></td>
+          {% endif %}
+        </tr>
+        <tr>
+          <td>Свидетельство о рождении / паспорт</td>
+          <td>{{ form.passport|as_crispy_field }}</td>
+          {% if user_profile.passport %}
+          <td><a href="{{user_profile.passport.url}}" download>
+            <img src="/media/default/doc_green.svg" width="32" height="32" title="Скачать"></a></td>
+          {% else %}
+          <td><img src="/media/default/doc_red.svg" width="32" height="32" title="Файл отсутствует"></td>
+          {% endif %}
+          <td>Бессрочно</td>
+          <td></td>
+          {% if user_profile.passport %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/emark.svg" width="32" height="32"></td>
+          {% endif %}
+        </tr>
+        <tr>
+          <td>Договор</td>
+          <td>{{ form.agreement|as_crispy_field }}</td>
+          {% if user_profile.agreement %}
+          <td><a href="{{user_profile.agreement.url}}" download>
+            <img src="/media/default/doc_green.svg" width="32" height="32" title="Скачать"></a></td>
+          {% else %}
+          <td><img src="/media/default/doc_red.svg" width="32" height="32" title="Файл отсутствует"></td>
+          {% endif %}
+          <td>{{ form.agreement_expiration_date.value }}</td>
+          {% if user_profile.agreement_expiration_date >= today %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/cross.svg" width="32" height="32"></td>
+          {% endif %}
+          {% if user_profile.agreement and user_profile.agreement_expiration_date >= today %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/emark.svg" width="32" height="32" title="Документ отсутствует или срок его действия истек"></td>
+          {% endif %}
+        </tr>
+        <tr>
+          <td>Медицинское заключение</td>
+          <td>{{ form.medical_report|as_crispy_field }}</td>
+          {% if user_profile.medical_report %}
+          <td><a href="{{user_profile.medical_report.url}}" download>
+            <img src="/media/default/doc_green.svg" width="32" height="32" title="Скачать"></a></td>
+          {% else %}
+          <td><img src="/media/default/doc_red.svg" width="32" height="32" title="Файл отсутствует"></td>
+          {% endif %}
+          <td>{{ form.medical_report_expiration_date.value }}</td>
+          {% if user_profile.medical_report_expiration_date >= today %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/cross.svg" width="32" height="32"></td>
+          {% endif %}
+          {% if user_profile.medical_report and user_profile.medical_report_expiration_date >= today %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/emark.svg" width="32" height="32" title="Документ отсутствует или срок его действия истек"></td>
+          {% endif %}
+        </tr>
+        <tr>
+          <td>Страховка</td>
+          <td>{{ form.insurance|as_crispy_field }}</td>
+          {% if user_profile.insurance %}
+          <td><a href="{{user_profile.insurance.url}}" download>
+            <img src="/media/default/doc_green.svg" width="32" height="32" title="Скачать"></a></td>
+          {% else %}
+          <td><img src="/media/default/doc_red.svg" width="32" height="32" title="Файл отсутствует"></td>
+          {% endif %}
+          <td>{{ form.insurance_expiration_date.value }}</td>
+          {% if user_profile.insurance_expiration_date >= today %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/cross.svg" width="32" height="32"></td>
+          {% endif %}
+          {% if user_profile.insurance and user_profile.insurance_expiration_date >= today %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/emark.svg" width="32" height="32" title="Документ отсутствует или срок его действия истек"></td>
+          {% endif %}
+        </tr>
+        <tr>
+          <td>Справка из школы</td>
+          <td>{{ form.school_certificate|as_crispy_field }}</td>
+          {% if user_profile.school_certificate %}
+          <td><a href="{{user_profile.school_certificate.url}}" download>
+            <img src="/media/default/doc_green.svg" width="32" height="32" title="Скачать"></a></td>
+          {% else %}
+          <td><img src="/media/default/doc_red.svg" width="32" height="32" title="Файл отсутствует"></td>
+          {% endif %}
+          <td>{{ form.school_certificate_expiration_date.value }}</td>
+          {% if user_profile.school_certificate_expiration_date >= today %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/cross.svg" width="32" height="32"></td>
+          {% endif %}
+          {% if user_profile.school_certificate and user_profile.school_certificate_expiration_date >= today %}
+          <td><img src="/media/default/ok.svg" width="32" height="32"></td>
+          {% else %}
+          <td><img src="/media/default/emark.svg" width="32" height="32" title="Документ отсутствует или срок его действия истек"></td>
+          {% endif %}
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+</div>
+{% endblock %}

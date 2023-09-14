@@ -1,0 +1,14 @@
+<div class="container mt-3">
+    <div class="card">
+      <div class="card-body">
+          <h5>Важные новости</h5>
+          {% for item in anno_list|slice:":3" %}
+            {% if item.announcement %}
+            <h6>{{item.created_at|date:"d-M-Y"}} | <a href="single/{{item.pk}}">{{item.announcement}}</a></h6>
+            {% endif %}
+          {% empty %}
+            <h6>Объявлений пока нет.</h6>
+          {% endfor %}
+      </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+{% extends 'inc/_3blocks.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="d-flex justify-content-center align-items-center mt-3">
+        <div class="row">
+        <div class="col text-center">
+        <img class="mb-4" src="/media/default/sambo_logo.png">
+        <h1>Вход</h1>
+            {% if form.errors %}
+                <div class="w-100 alert alert-danger mt-3" role="alert">
+                    <p>Неверное имя пользователя или пароль.</p>
+                    <p>Пожалуйста, повторите попытку.</p>
+                </div>
+            {% endif %}
+            {{ form.username|as_crispy_field }}
+            {{ form.password|as_crispy_field }}
+        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Войти</button>
+        </div>
+        </div>
+    </div>
+
+</form>
+<div class="d-flex justify-content-center mt-3"><a href="{% url 'reset_password' %}">Забыли пароль?</a></div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-xxl">
+    <a class="navbar-brand" href="{% url 'home_news' %}">САМБО+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home_news' %}">Новости</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'article_list' %}">Статьи</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'documents' %}">Документы</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'about' %}">О нас</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'lk' %}">Личный кабинет</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'logout' %}">Выход</a>
+        </li>
+          {% if user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link active" href="/admin/">Админка</a>
+          </li>
+          {% endif %}
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'login' %}">Вход</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

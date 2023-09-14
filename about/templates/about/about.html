@@ -1,0 +1,16 @@
+{% extends 'inc/_2blocks.html' %}
+
+
+{% block left %}
+<div class="container mt-3">
+    {{ about.content | safe }}
+</div>
+{% endblock %}
+
+
+{% block right %}
+<div class="container mt-3 border rounded" style="background-color: #d7dbdd;">
+    {{ contacts.content | safe }}
+</div>
+{% endblock %}
+

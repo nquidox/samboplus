@@ -1,0 +1,28 @@
+{% extends 'inc/_3blocks.html' %}
+
+
+{% block title %}{{ single.title }}{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-body embed-responsive embed-responsive-16by9">
+                    <h5 class="card-title mb-3">{{ single.title }}</h5>
+                    {% if single.image %}
+                    <img src="{{ single.image.url }}" class="mb-3 card-img-top embed-responsive-item">
+                    {% endif %}
+                    <p class="card-text">{{ single.content|safe }}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ single.created_at|date:"Y-m-d H:i" }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

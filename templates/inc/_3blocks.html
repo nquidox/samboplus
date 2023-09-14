@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        {% block summary %}{% endblock %}
+        {% for obj in infoblocks %}
+          {% if obj.side == 'left' and obj.is_published == True %}
+          <div class="mt-3"><img src="{{ obj.image.url }}" width="196" height="400">{{ obj.text }}</div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="col-md-8">
+        {% block content %}{% endblock %}
+      </div>
+
+      <div class="col-md-2">
+        {% for obj in infoblocks %}
+          {% if obj.side == 'right' and obj.is_published == True %}
+          <div class="mt-3"><img src="{{ obj.image.url }}" width="196" height="400">{{ obj.text }}</div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+</div>
+{% endblock %}
